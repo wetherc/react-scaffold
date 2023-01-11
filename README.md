@@ -12,3 +12,10 @@ This is meant to provide a simple scaffold to get up and running with a standalo
 ```
 $ docker compose up
 ```
+
+## Autogen gql
+
+This requires that the Apollo server be running
+```
+pnpm graphql-code-generator --config ./apollo-server/codegen.ts
+```
