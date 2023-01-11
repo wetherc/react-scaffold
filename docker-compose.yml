@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:15.1
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+    ports:
+      - 5432:5432
+
+  apollo:
+    image: apollo-server
+    build: ./apollo-server
+    ports:
+      - 4000:4000
+    volumes:
+      - ./apollo-server:/app:rw

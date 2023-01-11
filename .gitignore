@@ -14,7 +14,7 @@
 	
 # And permit certain filetypes
 !.gitignore
-!*.yaml
+!*.yml
 !*.json
 !*.tsx
 !*.ts
