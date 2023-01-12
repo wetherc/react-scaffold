@@ -1,43 +1,42 @@
+import { makeSchema } from 'nexus'
+import { Request } from 'express'
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
+import path from 'path'
+import * as types from './graphql/schema/index.js'
 
-const typeDefs = `#graphql
-  type Book {
-    title: String
-    author: String
-  }
 
-  type Query {
-    books: [Book]
-  }
-`;
-const books = [
-  {
-    title: 'The Awakening',
-    author: 'Kate Chopin',
+const schema = makeSchema({
+  types,
+  outputs: {
+    schema: path.join(__dirname, '../schema.graphql'),
+    typegen: path.join(__dirname, 'typegen.ts'),
   },
-  {
-    title: 'City of Glass',
-    author: 'Paul Auster',
+  sourceTypes: {
+    modules: [
+      {
+        module: path.join(__dirname, 'typeDefs.ts'),
+        alias: 't',
+      },
+    ],
   },
-];
-const resolvers = {
-  Query: {
-    books: () => books,
+  contextType: {
+    module: path.join(__dirname, 'context.ts'),
+    export: 'Context',
   },
-};
+  prettierConfig: require.resolve('../.prettierrc'),
+})
 
-// The ApolloServer constructor requires two parameters: your schema
-// definition and your set of resolvers.
+const context = async ({ req }: { req: Request }) => {
+  // simple auth check on every request
+  const auth = (req.headers && req.headers.authorization) || ''
+  return null
+}
+
 const server = new ApolloServer({
-  typeDefs,
-  resolvers,
+  schema,
 });
 
-// Passing an ApolloServer instance to the `startStandaloneServer` function:
-//  1. creates an Express app
-//  2. installs your ApolloServer instance as middleware
-//  3. prepares your app to handle incoming requests
 const { url } = await startStandaloneServer(server, {
   listen: { port: 4000 },
 });

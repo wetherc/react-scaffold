@@ -18,4 +18,7 @@ $ docker compose up
 This requires that the Apollo server be running
 ```
 pnpm graphql-code-generator --config ./apollo-server/codegen.ts
+
+# or
+pnpm generate
 ```
