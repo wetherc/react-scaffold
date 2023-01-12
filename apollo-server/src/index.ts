@@ -1,11 +1,13 @@
 import { makeSchema } from 'nexus'
 import { Request } from 'express'
-import { ApolloServer } from '@apollo/server';
-import { startStandaloneServer } from '@apollo/server/standalone';
+import { ApolloServer } from '@apollo/server'
+import { startStandaloneServer } from '@apollo/server/standalone'
 import path from 'path'
-import * as types from './graphql/schema/index.js'
+import { fileURLToPath } from 'url'
+import * as types from './graphql/index.js'
 
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const schema = makeSchema({
   types,
   outputs: {
@@ -24,7 +26,6 @@ const schema = makeSchema({
     module: path.join(__dirname, 'context.ts'),
     export: 'Context',
   },
-  prettierConfig: require.resolve('../.prettierrc'),
 })
 
 const context = async ({ req }: { req: Request }) => {
