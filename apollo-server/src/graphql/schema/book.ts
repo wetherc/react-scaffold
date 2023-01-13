@@ -7,14 +7,14 @@ export const Book = objectType({
     definition(t) {
         t.id('id')
         t.string('title')
-        t.int('datePublished')
+        t.int('publicationDate')
     },
 })
 
 export class ObjectionBook extends Model {
     id!: string
     title!: string
-    datePublished!: number
+    publicationDate!: number
     author: ObjectionAuthor
 
     static tableName = 'books'

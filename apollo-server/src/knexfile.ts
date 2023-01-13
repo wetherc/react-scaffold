@@ -1,3 +1,5 @@
+import { knexSnakeCaseMappers } from "objection"
+
 export const knexConfig = {
   development: {
     client: 'postgresql',
@@ -11,5 +13,6 @@ export const knexConfig = {
       min: 2,
       max: 10,
     },
+    ...knexSnakeCaseMappers()
   },
 }

@@ -1,2 +1,4 @@
-export * from './author.js';
-export * from './book.js';
+export * from './schema/author.js';
+export * from './schema/book.js';
+
+export * from './queries.js';

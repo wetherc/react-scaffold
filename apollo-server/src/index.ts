@@ -18,16 +18,16 @@ const schema = makeSchema({
   types,
   outputs: {
     schema: path.join(__dirname, '../schema.graphql'),
-    typegen: path.join(__dirname, 'typegen.js'),
+    typegen: path.join(__dirname, 'typegen.ts'),
   },
-  sourceTypes: {
-    modules: [
-      {
-        module: path.join(__dirname, 'typeDefs.js'),
-        alias: 't',
-      },
-    ],
-  },
+  // sourceTypes: {
+  //   modules: [
+  //     {
+  //       module: path.join(__dirname, 'typeDefs.js'),
+  //       alias: 't',
+  //     },
+  //   ],
+  // },
   contextType: {
     module: path.join(__dirname, 'context.js'),
     export: 'Context',
