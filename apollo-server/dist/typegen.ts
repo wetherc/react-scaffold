@@ -58,6 +58,7 @@ export interface NexusGenFieldTypes {
     lastName: string | null; // String
   }
   Book: { // field return type
+    author: NexusGenRootTypes['Author'] | null; // Author
     id: string | null; // ID
     publicationDate: number | null; // Int
     title: string | null; // String
@@ -74,6 +75,7 @@ export interface NexusGenFieldTypeNames {
     lastName: 'String'
   }
   Book: { // field return type name
+    author: 'Author'
     id: 'ID'
     publicationDate: 'Int'
     title: 'String'

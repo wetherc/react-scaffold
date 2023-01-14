@@ -1,14 +1,14 @@
 CREATE TABLE authors (
-    id     uuid         DEFAULT gen_random_uuid() PRIMARY KEY,
+    id         uuid         DEFAULT gen_random_uuid() PRIMARY KEY,
     first_name VARCHAR(255),
-    last_name VARCHAR(255)
+    last_name  VARCHAR(255)
 );
 
 CREATE TABLE books (
     id               uuid         DEFAULT gen_random_uuid() PRIMARY KEY,
     title            VARCHAR(255) NOT NULL,
     publication_date INTEGER      NOT NULL,
-    authorId         uuid         NOT NULL REFERENCES authors(id)
+    author_id        uuid         NOT NULL REFERENCES authors(id)
 );
 
 INSERT INTO authors (id, first_name, last_name)
@@ -19,7 +19,7 @@ VALUES
     ('0a9096b0-b9b6-40e9-89be-adf756018a12', 'Ursula', 'Le Guin')
 RETURNING *;
 
-INSERT INTO books (title, publication_date, authorId)
+INSERT INTO books (title, publication_date, author_id)
 VALUES
     ('Dune', 1965, '8a3b2454-2d7e-496e-ae19-1d1f21a45d0f'),
     ('Dune Messiah', 1966, '8a3b2454-2d7e-496e-ae19-1d1f21a45d0f'),
