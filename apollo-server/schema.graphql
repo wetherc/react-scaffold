@@ -8,11 +8,27 @@ type Author {
   lastName: String
 }
 
+input AuthorInputType {
+  firstName: String!
+  lastName: String!
+}
+
 type Book {
   author: Author
   id: ID
   publicationDate: Int
   title: String
+}
+
+input BookInputType {
+  authorId: String!
+  publicationDate: Int!
+  title: String!
+}
+
+type Mutation {
+  addAuthor(data: AuthorInputType): Author
+  addBook(data: BookInputType): Book
 }
 
 type Query {

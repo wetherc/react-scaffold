@@ -14,6 +14,15 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  AuthorInputType: { // input type
+    firstName: string; // String!
+    lastName: string; // String!
+  }
+  BookInputType: { // input type
+    authorId: string; // String!
+    publicationDate: number; // Int!
+    title: string; // String!
+  }
 }
 
 export interface NexusGenEnums {
@@ -38,6 +47,7 @@ export interface NexusGenObjects {
     publicationDate?: number | null; // Int
     title?: string | null; // String
   }
+  Mutation: {};
   Query: {};
 }
 
@@ -63,6 +73,10 @@ export interface NexusGenFieldTypes {
     publicationDate: number | null; // Int
     title: string | null; // String
   }
+  Mutation: { // field return type
+    addAuthor: NexusGenRootTypes['Author'] | null; // Author
+    addBook: NexusGenRootTypes['Book'] | null; // Book
+  }
   Query: { // field return type
     getBook: Array<NexusGenRootTypes['Book'] | null>; // [Book]!
     listAuthors: Array<NexusGenRootTypes['Author'] | null>; // [Author]!
@@ -82,6 +96,10 @@ export interface NexusGenFieldTypeNames {
     publicationDate: 'Int'
     title: 'String'
   }
+  Mutation: { // field return type name
+    addAuthor: 'Author'
+    addBook: 'Book'
+  }
   Query: { // field return type name
     getBook: 'Book'
     listAuthors: 'Author'
@@ -90,6 +108,14 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    addAuthor: { // args
+      data?: NexusGenInputs['AuthorInputType'] | null; // AuthorInputType
+    }
+    addBook: { // args
+      data?: NexusGenInputs['BookInputType'] | null; // BookInputType
+    }
+  }
   Query: {
     getBook: { // args
       title: string; // String!
@@ -113,7 +139,7 @@ export interface NexusGenTypeInterfaces {
 
 export type NexusGenObjectNames = keyof NexusGenObjects;
 
-export type NexusGenInputNames = never;
+export type NexusGenInputNames = keyof NexusGenInputs;
 
 export type NexusGenEnumNames = never;
 
