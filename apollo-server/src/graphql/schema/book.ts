@@ -46,6 +46,7 @@ export class ObjectionBook extends Model {
             }
         }
     }
+    
     static relationMappings = () => ({
         authors: {
             relation: Model.HasOneRelation,

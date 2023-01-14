@@ -64,6 +64,8 @@ export interface NexusGenFieldTypes {
     title: string | null; // String
   }
   Query: { // field return type
+    getBook: Array<NexusGenRootTypes['Book'] | null>; // [Book]!
+    listAuthors: Array<NexusGenRootTypes['Author'] | null>; // [Author]!
     listBooks: Array<NexusGenRootTypes['Book'] | null>; // [Book]!
   }
 }
@@ -81,12 +83,21 @@ export interface NexusGenFieldTypeNames {
     title: 'String'
   }
   Query: { // field return type name
+    getBook: 'Book'
+    listAuthors: 'Author'
     listBooks: 'Book'
   }
 }
 
 export interface NexusGenArgTypes {
   Query: {
+    getBook: { // args
+      title: string; // String!
+    }
+    listAuthors: { // args
+      firstName?: string | null; // String
+      lastName?: string | null; // String
+    }
     listBooks: { // args
       firstName?: string | null; // String
       lastName?: string | null; // String

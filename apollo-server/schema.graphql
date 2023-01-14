@@ -16,5 +16,7 @@ type Book {
 }
 
 type Query {
+  getBook(title: String!): [Book]!
+  listAuthors(firstName: String, lastName: String): [Author]!
   listBooks(firstName: String, lastName: String): [Book]!
 }
