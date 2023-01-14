@@ -22,17 +22,3 @@ export const ListBooksQuery = extendType({
         });
     },
 })
-
-export const ListBooksForAuthorQuery = extendType({
-    type: 'Query',
-    definition(t) {
-        t.nonNull.list.field('listBooksForAuthor', {
-            type: Book,
-            async resolve(root, ctx) {
-                return ObjectionBook.query()
-                    .orderBy('publicationDate');
-            },
-        });
-    },
-
-})

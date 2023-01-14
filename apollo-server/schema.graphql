@@ -17,5 +17,4 @@ type Book {
 
 type Query {
   listBooks(firstName: String, lastName: String): [Book]!
-  listBooksForAuthor: [Book]!
 }
