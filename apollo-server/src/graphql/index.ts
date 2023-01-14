@@ -1,5 +1,7 @@
-export * from './schema/author.js';
-export * from './schema/book.js';
+export * from './author/author.js';
+export * from './author/authorMutations.js';
+export * from './author/authorQueries.js';
 
-export * from './queries.js';
-export * from './mutations.js';
+export * from './book/book.js';
+export * from './book/bookQueries.js';
+export * from './book/bookMutations.js';

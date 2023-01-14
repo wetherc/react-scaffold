@@ -1,7 +1,6 @@
 import { extendType, stringArg, nonNull } from 'nexus'
-import { Utils } from '../typeDefs.js'
-import { Book, ObjectionBook } from './schema/book.js'
-import { Author, ObjectionAuthor } from './schema/author.js'
+import { Utils } from '../../typeDefs.js'
+import { Book, ObjectionBook } from './book.js'
 
 export const ListBooksQuery = extendType({
     type: 'Query',
@@ -36,30 +35,6 @@ export const GetBookQuery = extendType({
                 return await ObjectionBook.query()
                     .where('title', 'like', `%${args.title}%`)
                     .orderBy('title');
-            },
-        });
-    },
-})
-
-export const ListAuthorsQuery = extendType({
-    type: 'Query',
-    definition(t) {
-        t.nonNull.list.field('listAuthors', {
-            type: Author,
-            args: {
-                firstName: stringArg(),
-                lastName: stringArg(),
-            },
-            async resolve(root, args, ctx) {
-                let query = ObjectionAuthor.query();
-                if (Object.keys(args).length > 0) {
-                    query = query.where(args)
-                }
-                const result = await query.orderBy([
-                    {column: 'lastName'},
-                    {column: 'firstName'}
-                ]);
-                return result;
             },
         });
     },

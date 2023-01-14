@@ -1,6 +1,6 @@
 import { objectType } from 'nexus'
 import Objection, { Model } from 'objection'
-import { ObjectionAuthor } from './author.js'
+import { ObjectionAuthor } from '../author/author.js'
 
 export const Book = objectType({
     name: 'Book',
