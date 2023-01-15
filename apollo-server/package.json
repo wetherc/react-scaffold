@@ -1,5 +1,6 @@
 {
   "type": "module",
+  "private": true,
   "scripts": {
     "compile": "tsc",
     "start": "pnpm run compile && node ./dist/index.js"
