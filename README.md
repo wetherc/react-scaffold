@@ -17,8 +17,8 @@ $ docker compose up
 
 This repository will, at a high level, provide:
   - A PostgreSQL database seeded with some initial data;
-  - A standalone Apollo server (accessible at http://172.0.0.1:4000) with some basic queries and mutations, and with the configuration to interact with the seeded database; and
-  - A React client application (accessible at http://172.0.0.1:3000) which a user can interact with and which is configured to communicate to the Apollo server.
+  - A standalone Apollo server (accessible at http://127.0.0.1:4000) with some basic queries and mutations, and with the configuration to interact with the seeded database; and
+  - A React client application (accessible at http://127.0.0.1:3000) which a user can interact with and which is configured to communicate to the Apollo server.
 
 This all comes with the (probs obvious) caveat that this is a toy example to demonstrate:
   - How to interact with a backend database using Objection.js and knex;
