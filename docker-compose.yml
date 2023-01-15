@@ -17,10 +17,10 @@ services:
     volumes:
       - ./apollo-server:/app:rw
 
-  client:
-    image: client-app
-    build:
-      context: ./client-app
-      dockerfile: ./Dockerfile
-    ports:
-      - 3000:3000
+  # client:
+  #   image: client-app
+  #   build:
+  #     context: ./client-app
+  #     dockerfile: ./Dockerfile
+  #   ports:
+  #     - 3000:3000
