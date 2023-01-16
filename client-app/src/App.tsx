@@ -49,27 +49,33 @@ function GetBooks() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
-
-  return data && data.listBooks.map(book => (
-    <Grid item key={book.title} xs={12} sm={6} md={4}>
-      <Card
-        sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-      >
-        <CardContent sx={{ flexGrow: 1 }}>
-          <Typography gutterBottom variant="h5" component="h2">
-            {book.title}
-          </Typography>
-          <Typography>
-            {book.title} ({book.publicationDate}) by {book.author.lastName}, {book.author.firstName}
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">View</Button>
-          <Button size="small">Edit</Button>
-        </CardActions>
-      </Card>
-    </Grid>
-  ));
+  if (data) {
+    return (
+      <Grid container spacing={4}>
+        {data.listBooks.map(book => (
+          <Grid item key={book.title} xs={12} sm={6} md={4}>
+            <Card
+              sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+            >
+              <CardContent sx={{ flexGrow: 1 }}>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {book.title}
+                </Typography>
+                <Typography>
+                  {book.title} ({book.publicationDate}) by {book.author.lastName}, {book.author.firstName}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button size="small">View</Button>
+                <Button size="small">Edit</Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    );
+  };
+  return <div></div>;
 }
 const theme = createTheme();
 
@@ -92,10 +98,8 @@ export default function App() {
             pb: 6,
           }}
         >
-          <Container sx={{ py: 8 }} maxWidth="md">
-            <Grid container spacing={4}>
-              <GetBooks />
-            </Grid>
+          <Container sx={{ py: 8 }} maxWidth="md">            
+            <GetBooks />
           </Container>
         </Box>
       </main>
