@@ -2,13 +2,12 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery, gql, TypedDocumentNode } from '@apollo/client';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -17,7 +16,22 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const GET_BOOKS = gql`
+interface BookListData {
+  listBooks: Book[];
+}
+
+interface Book {
+  title: string;
+  publicationDate: number;
+  author: Author;
+}
+
+interface Author {
+  firstName: string;
+  lastName: string;
+}
+
+const GET_BOOKS: TypedDocumentNode<BookListData> = gql`
   query ListBooks {
     listBooks {
       author {
@@ -36,17 +50,17 @@ function GetBooks() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
 
-  return data.listBooks.map(({ title, publicationDate, author }) => (
-    <Grid item key={title} xs={12} sm={6} md={4}>
+  return data && data.listBooks.map(book => (
+    <Grid item key={book.title} xs={12} sm={6} md={4}>
       <Card
         sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
       >
         <CardContent sx={{ flexGrow: 1 }}>
           <Typography gutterBottom variant="h5" component="h2">
-            {title}
+            {book.title}
           </Typography>
           <Typography>
-            {title} ({publicationDate}) by {author.lastName}, {author.firstName}
+            {book.title} ({book.publicationDate}) by {book.author.lastName}, {book.author.firstName}
           </Typography>
         </CardContent>
         <CardActions>
