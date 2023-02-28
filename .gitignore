@@ -26,6 +26,7 @@
 !*.sql
 !*.graphql
 !.prettierrc
+!Dockerfile
 
 	
 # And certain folders, regardless of content
