@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "compile": "tsc",
-    "start": "pnpm run compile && node ./dist/index.js"
+    "start": "npm run compile && node ./dist/index.js"
   },
   "dependencies": {
     "@apollo/server": "^4.3.0",

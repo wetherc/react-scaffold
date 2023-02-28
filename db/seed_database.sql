@@ -34,4 +34,3 @@ VALUES
     ('The Left Hand of Darkness', 1969, '0a9096b0-b9b6-40e9-89be-adf756018a12'),
     ('The Dispossessed: An Ambiguous Utopia', 1974, '0a9096b0-b9b6-40e9-89be-adf756018a12')
 RETURNING *;
-   

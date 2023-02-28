@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:15.1
+    image: chriswetherill/postgres
     restart: always
     environment:
       POSTGRES_PASSWORD: example
@@ -10,17 +10,16 @@ services:
       - ./db:/docker-entrypoint-initdb.d:ro
 
   apollo:
-    image: apollo-server
-    build: ./apollo-server
+    image: chriswetherill/apollo-server
     ports:
       - 4000:4000
     volumes:
       - ./apollo-server:/app:rw
 
-  # client:
-  #   image: client-app
-  #   build:
-  #     context: ./client-app
-  #     dockerfile: ./Dockerfile
-  #   ports:
-  #     - 3000:3000
+  client:
+    image: chriswetherill/react-client
+    ports:
+      - 3000:3000
+    volumes:
+      - ./client-app:/app:rw
+
