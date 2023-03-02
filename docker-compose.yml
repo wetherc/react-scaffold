@@ -13,13 +13,8 @@ services:
     image: chriswetherill/apollo-server
     ports:
       - 4000:4000
-    volumes:
-      - ./apollo-server:/app:rw
 
   client:
     image: chriswetherill/react-client
     ports:
       - 3000:3000
-    volumes:
-      - ./client-app:/app:rw
-
